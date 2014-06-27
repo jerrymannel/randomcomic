@@ -7,6 +7,7 @@ Description : logic to call the following url and get the data -
 */
 
 var comicUrl = "http://random.cruisemaniac.com/getnext/";
+var counter = 0;
 
 function hideComic() {
     $("#comicHeading").hide();
@@ -24,11 +25,15 @@ function showComic() {
 
 function loadComic() {
     'use strict';
+    counter = 0;
     $.get(comicUrl, function (r) {
         $(".comicLoading").hide();
         showComic();
+        $("#comicHeading").html('');
+        $("#comics").html('');
+        $("#comicFooter").html('');
         $("#comicHeading").append('<h4 id="comicSource" class="show"><strong>' + r.name + '</strong></h4>');
-        $("#comics").append('<div id="comic" class="show"><a href="' + r.permalink + '"><img src="' + r.imgurl + '" class="img-responsive" alt="' + r.name + '" title="' + r.name + '" id="comicImage"></a></div>');
+        $("#comics").append('<div id="comic" class="show"><a href="#" onclick="openLink(\'' + r.permalink + '\');"><img src="' + r.imgurl + '" class="img-responsive" alt="' + r.name + '" title="' + r.name + '" id="comicImage"></a></div>');
         $("#comicFooter").append('<span id="comicTitle" class="text-center show">' + r.title + '</span>');
         loadComics();
     });
@@ -51,11 +56,10 @@ function fetchNewComic() {$.get(comicUrl, function(r) { addComicAndHide(r);});}
 
 function addComicAndHide(r){
     $("#comicHeading").append('<h4 id="comicSource" class="hide"><strong>' + r.name + '</strong></h4>');
-    $("#comics").append('<div id="comic" class="hide"><a href="' + r.permalink + '"><img src="' + r.imgurl + '" class="img-responsive" alt="' + r.name + '" title="' + r.name + '" id="comicImage"></a></div>');
+    $("#comics").append('<div id="comic" class="hide"><a href="#" onclick="openLink(\'' + r.permalink + '\');"><img src="' + r.imgurl + '" class="img-responsive" alt="' + r.name + '" title="' + r.name + '" id="comicImage"></a></div>');
     $("#comicFooter").append('<span id="comicTitle" class="text-center hide">' + r.title + '</span>');
 }
 
-var counter = 0;
 function displayNextComic(){
     'use strict';
     var comicHead = $("#comicHeading > h4.show");
@@ -86,7 +90,7 @@ function displayPrevComic(){
     var comicFoot = $("#comicFooter > span.show");
     
     if (counter == 0){
-        alert("x");
+        $('#myNoComicAlert').modal('show');
     } else {
         comicHead.addClass("hide");
         comicHead.prev().addClass("show");
@@ -110,9 +114,15 @@ var element = document.getElementById('comics');
 Hammer(element).on("dragright", function (event) {
     displayNextComic();
     fetchNewComic();
+    window.scrollTo(0, 0);
 });
 
 Hammer(element).on("dragleft", function (event) {
     displayPrevComic();
+    window.scrollTo(0, 0);
 });
+
+function openLink(s){
+    window.open(s, '_system');
+}
 
