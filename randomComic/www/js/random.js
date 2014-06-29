@@ -110,6 +110,7 @@ function displayPrevComic(){
     }
 }
 
+
 var element = document.getElementById('comics');
 Hammer(element).on("dragright", function (event) {
     displayNextComic();
