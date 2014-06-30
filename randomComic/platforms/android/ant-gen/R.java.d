@@ -31,6 +31,7 @@
 /home/jerry/Workspace/RandomComic/randomComic/platforms/android/ant-build/res/drawable/icon.png \
 /home/jerry/Workspace/RandomComic/randomComic/platforms/android/ant-build/res/drawable-land-mdpi/screen.png \
 /home/jerry/Workspace/RandomComic/randomComic/platforms/android/ant-build/res/drawable-port-xhdpi/screen.png \
+/home/jerry/Workspace/RandomComic/randomComic/platforms/android/ant-build/res/drawable-port-xhdpi/icon.png \
 /home/jerry/Workspace/RandomComic/randomComic/platforms/android/ant-build/res/drawable-xhdpi/icon.png \
 /home/jerry/Workspace/RandomComic/randomComic/platforms/android/ant-build/res/drawable-xhdpi/ic_action_previous_item.png \
 /home/jerry/Workspace/RandomComic/randomComic/platforms/android/ant-build/res/drawable-xhdpi/ic_action_remove.png \

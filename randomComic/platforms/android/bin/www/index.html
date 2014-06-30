@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+<!--        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />-->
+        <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <title>Random Comic Generator</title>
+    </head>
+    <body>
+<!--   FIXED HEADER     -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <p class="navbar-brand">Random Geek <small>{comics at work}</small></p>
+                </div>
+            </div>
+        </nav>
+        
+<!--   Caption below the header    -->
+        <div class="container">
+            <p class="text-right text-muted">
+                <em><small>because you can never have enough of internet humour!</small></em>
+            </p>
+        </div>
+        
+<!--    Body    -->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+<!--                        <div class="pull-right"><a class="btn" onclick="loadComic();">Refresh <span class="glyphicon glyphicon-refresh"></span></a></div>-->
+                        <div id="comicHeading"></div>
+                    </div>
+                    <div class="panel-body">
+                        <p class="text-center">
+                            <small id="footer">
+                                <span class="glyphicon glyphicon-arrow-left"></span><strong> (old) :: Swipe navigation :: (new) </strong><span class="glyphicon glyphicon-arrow-right"></span>
+                            </small>
+                        </p>
+                        <div id="comics"></div>
+                        <div class="container comicLoading">
+                            <h4 class="text-center">Fetching some internet <strong>awesomeness...</strong></h4>
+                            <h3 class="text-center"><span class="glyphicon glyphicon-refresh" id="refreshing"></span></h3>
+                        </div>
+                    </div>
+                    
+                    <div class="panel-footer">
+                        <div id="comicFooter"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container">
+            <ol class="breadcrumb text-center">
+                <li><a href="#" data-toggle="modal" data-target="#aboutModal">About</a></li>
+                <li><a onclick="openLink('https://play.google.com/store/apps/details?id=com.cruise.randomcomic')">Rate us on Play Store</a></li>
+<!--
+                <li class="active">
+                    <a href="#" data-toggle="modal" data-target="#shareModal"><span class="glyphicon glyphicon-share"></span> Share</a></li>
+                </li>
+-->
+                <li><a href="#" data-toggle="modal" data-target="#disclaimerModal">Disclaimer</a></li>
+            </ol>
+        </div>
+        
+        <div class="modal" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        
+                        <h4>Yo!</h4>
+                        <p><strong>Random Geek</strong> comic was born out of my personal need to read geek comics at work! Instead of visiting multiple sites and hitting the random buttons over there, I though I'll whip up a little something that will take care of this!</p>
+                        <p>Enjoy your dose of some of the best geek comics and more from the internet - new sources will be added as and when I can get back to this project!</p>
+                        <p>At this point, comics are pulled from <a onclick="openLink('http://xkcd.com');" href="#"><span class="label label-primary">XKCD</span></a> , <a onclick="openLink('http://www.cad-comic.com');" href="#"><span class="label label-primary">ctrl+alt+del</a> and <a onclick="openLink('http://explosm.net/comics');" href="#"><span class="label label-primary">cyanide and happiness</a>.
+                        <p>---</p>
+                        <p><strong>Ashwin</strong></p>
+                        <p><small>I'm reachable on <a onclick="openLink('http://twitter.com/cruisemaniac');" href="#">twitter</a>, <a onclick="openLink('http://facebook.com/cruisemaniac');" href="#">facebook</a> and over the regular <a onclick="openLink('mailto:mail@cruisemaniac.com?Subject=random geek comic');">email!</a></small></p>
+                        
+                        <div class="well well-sm">Mobile app. designed and developed by <strong>Jerry M.</strong></div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="modal" id="myNoComicAlert" tabindex="-1" role="dialog" aria-labelledby="myNoComicAlert" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        No more fun left to this side. Go the other way!
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="modal" id="shareModal" tabindex="-1" role="dialog" aria-labelledby="shareModal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        No more fun left to this side. Go the other way!
+                    </div>
+                </div>
+            </div>
+        </div>
+                
+        <div class="modal" id="disclaimerModal" tabindex="-1" role="dialog" aria-labelledby="shareModal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <p><strong>Disclaimer</strong></p>
+                        <p><em>Every single comic, that's shown on this mobile app belongs to their respective owners and we have respected their copyright policy</em></p>
+                        <p><em>We do not store any of these comics on the device or on our servers!</em></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+                        
+        
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/hammer.min.js"></script>
+        <script type="text/javascript" src="js/random.js"></script>
+        <script type="text/javascript">
+            hideComic();
+            loadComic();
+        </script>
+    </body>
+</html>
